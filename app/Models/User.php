@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
     ];
 
     /**
@@ -44,4 +45,36 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
+
+    public function dashboard()
+    {
+        $user = auth()->user()->load('cars.images');
+        return view('dashboard', compact('user'));
+    }
+
+    // Inside User model
+    public function buyRequests()
+    {
+        return $this->hasManyThrough(BuyRequest::class, Car::class);
+    }
+
+    // Assuming SellRequest is a separate model or logic
+    public function rentRequests()
+    {
+        return $this->hasManyThrough(RentRequest::class, Car::class, 'user_id', 'car_id', 'id', 'id');
+    }
+
+
+
+    public function transactions()
+    {
+        return $this->hasManyThrough(Transaction::class, Car::class);
+    }
+
+
 }

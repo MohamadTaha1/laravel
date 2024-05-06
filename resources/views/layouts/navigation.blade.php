@@ -16,6 +16,28 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cars-for-sale')" :active="request()->routeIs('cars-for-sale')">
+                        {{ __('Buy Cars') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cars-for-rent')" :active="request()->routeIs('cars-for-rent')">
+                        {{ __('Rent Cars') }} <!-- New link for renting cars -->
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('transactions.index')" :active="request()->routeIs('transactions.index')">
+                        {{ __('My Transactions') }} <!-- New link for renting cars -->
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('bidding.index')" :active="request()->routeIs('bidding.index')">
+                        {{ __('Bidding') }} <!-- New link for bidding -->
+                    </x-nav-link>
+                </div>
+                
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -69,6 +91,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('cars-for-sale')" :active="request()->routeIs('cars-for-sale')">
+                {{ __('Buy Cars') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('cars-for-rent')" :active="request()->routeIs('cars-for-rent')">
+                {{ __('Rent Cars') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('transactions.index')" :active="request()->routeIs('transactions.index')">
+                {{ __('My Transactions') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('bidding.index')" :active="request()->routeIs('bidding.index')">
+                {{ __('Bidding') }} <!-- Responsive link for bidding -->
             </x-responsive-nav-link>
         </div>
 
