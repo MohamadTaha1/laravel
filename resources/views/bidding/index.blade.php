@@ -1,3 +1,4 @@
+{{-- resources/views/bidding/index.blade.php --}}
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -16,8 +17,8 @@
                     <label class="block text-sm font-medium text-gray-700">
                         Car: {{ $car->make }} {{ $car->model }} - ${{ number_format($car->price) }}
                     </label>
-                    <a href="{{ route('bidding.setup', ['car' => $car->id]) }}" class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
-                        Start Bidding
+                    <a href="{{ route('bidding.setup', ['car' => $car->id]) }}" class="ml-3 inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                        Setup For Bidding
                     </a>
                 </div>
             @endforeach
@@ -35,10 +36,10 @@
                         <div class="bg-white overflow-hidden shadow rounded-lg p-4">
                             <h4 class="font-bold text-xl">{{ $car->make }} {{ $car->model }}</h4>
                             <div>Start Price: ${{ number_format($car->start_price) }}</div>
-                            <div>Ends: {{ \Carbon\Carbon::parse($car->bid_end_time)->diffForHumans() }}</div>
-                            <a href="{{ route('bidding.show', ['car' => $car->id]) }}" class="mt-4 inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
-                                View and Bid
-                            </a>
+                            <div>End Time: {{ $car->bid_end_time ? Carbon\Carbon::parse($car->bid_end_time)->toDayDateTimeString() : 'N/A' }}</div>
+                            <button onclick="location.href='{{  route('bidding.show', ['car' => $car->id])  }}'" class="mt-4 inline-flex items-center px-4 py-2 {{ $car->bid_end_time && now()->lt(Carbon\Carbon::parse($car->bid_end_time)) ? 'bg-blue-500 hover:bg-blue-700' : 'bg-gray-500 ' }} border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                {{ $car->bid_end_time && now()->lt(Carbon\Carbon::parse($car->bid_end_time)) ? 'View and Bid' : 'View Details' }}
+                            </button>
                         </div>
                     @empty
                         <p class="text-gray-500">No cars are currently available for bidding.</p>

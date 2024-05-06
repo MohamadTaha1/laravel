@@ -33,7 +33,7 @@ class BiddingController extends Controller
     }
 
     $request->validate([
-        'start_price' => 'required|numeric|min:2000000',
+        'start_price' => 'required|numeric',
         'bid_start_time' => 'required|date|after_or_equal:now',
         'bid_end_time' => 'required|date|after:bid_start_time'
     ]);

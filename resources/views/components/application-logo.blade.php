@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
 <svg
    width="150"
    height="75.36453529202126"
